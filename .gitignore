@@ -43,3 +43,4 @@ __screenshots__/
 Thumbs.db
 
 bun.lock
+package-lock.json
