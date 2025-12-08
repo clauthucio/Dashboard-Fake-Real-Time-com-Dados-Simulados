@@ -1,244 +1,245 @@
-**BRIEFING \- Dashboard “Fake Real-Time” com Dados Simulados (MVP)** 
+# NotryVision
 
-**Visão Geral** 
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.0.
 
-A empresa fictícia **Notry Analytics** está iniciando a implantação de um sistema interno de monitoramento de indicadores operacionais. Porém, como o setor de TI ainda não possui integrações com máquinas ou servidores industriais, o primeiro passo será criar um **Dashboard em “Fake Real-Time”**, onde os dados **não vêm da fábrica**, mas sim de uma **API simulada**. 
+## Development server
 
-O objetivo deste MVP é demonstrar como um painel de monitoramento funcionaria no mundo real, utilizando: 
+To start a local development server, run:
 
-● Atualização automática de KPIs 
+```bash
+ng serve
+```
 
-● Gráficos que reagirem a novos dados 
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-● Histórico acumulado ao longo do dia 
+## Code scaffolding
 
-● Simulação de consumo, produção, falhas, temperatura etc. 
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
-Embora os dados sejam falsos, **a lógica, a estrutura, o design e os fluxos são reais**, igual ao que um sistema industrial moderno usa para monitoramento contínuo. 
+```bash
+ng generate component component-name
+```
 
-**Contexto Industrial** 
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-Indústrias modernas dependem de dashboards em tempo real para monitorar: 
+```bash
+ng generate --help
+```
 
-● Produção contínua 
+## Building
 
-● Consumo de energia 
+To build the project run:
 
-● Falhas de máquinas 
+```bash
+ng build
+```
 
-● Taxa de retrabalho 
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-● Velocidade de linhas 
+## Running unit tests
 
-● Ocupação de setores 
+To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
 
-● Status de equipamentos 
+```bash
+ng test
+```
 
-Sem painéis atualizados automaticamente, problemas podem passar despercebidos, como: 
+## Running end-to-end tests
 
-● quedas súbitas de produção, 
+For end-to-end (e2e) testing, run:
 
-● aumento anormal do consumo de energia, 
+```bash
+ng e2e
+```
 
-● instabilidade em máquinas, 
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
-● atrasos em linhas,  
-● excedente de temperatura. 
+## Additional Resources
 
-Para treinar a equipe de desenvolvimento, a **Notry** criou este projeto educacional: **um dashboard real, com gráficos reais, mas com dados simulados.** 
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
-**Perfis de Usuários (Papéis no sistema)** 
+# BRIEFING - Dashboard “Fake Real-Time” com Dados Simulados (MVP)
 
-Mesmo sendo um sistema simples, trabalharemos com três papéis para treinar permissões e lógica condicional. 
+## Visão Geral
 
-Operador 
+A empresa fictícia **Notry Analytics** está iniciando a implantação de um sistema interno de monitoramento de indicadores operacionais. Porém, como o setor de TI ainda não possui integrações com máquinas ou servidores industriais, o primeiro passo será criar um Dashboard em “Fake Real-Time”, onde os dados não vêm da fábrica, mas sim de uma API simulada.
 
-● Apenas visualiza os KPIs. 
+O objetivo deste MVP é demonstrar como um painel de monitoramento funcionaria no mundo real, utilizando:
 
-● Acessa gráficos e histórico. 
+- Atualização automática de KPIs  
+- Gráficos que reagirem a novos dados  
+- Histórico acumulado ao longo do dia  
+- Simulação de consumo, produção, falhas, temperatura etc.
 
-● Não altera parâmetros. 
+Embora os dados sejam falsos, a lógica, a estrutura, o design e os fluxos são reais, igual ao que um sistema industrial moderno usa para monitoramento contínuo.
 
-● Não configura simulação. 
+## Contexto Industrial
 
-Supervisor 
+Indústrias modernas dependem de dashboards em tempo real para monitorar:
 
-● Visualiza tudo que o operador vê. 
+- Produção contínua  
+- Consumo de energia  
+- Falhas de máquinas  
+- Taxa de retrabalho  
+- Velocidade de linhas  
+- Ocupação de setores  
+- Status de equipamentos
 
-● Pode filtrar dashboards por setores. 
+Sem painéis atualizados automaticamente, problemas podem passar despercebidos, como:
 
-● Pode ajustar metas diárias. 
+- Quedas súbitas de produção  
+- Aumento anormal do consumo de energia  
+- Instabilidade em máquinas  
+- Atrasos em linhas  
+- Excedente de temperatura
 
-● Pode exportar dados do histórico. 
+Para treinar a equipe de desenvolvimento, a Notry criou este projeto educacional: um dashboard real, com gráficos reais, mas com dados simulados.
 
-Administrador 
+## Perfis de Usuários (Papéis no sistema)
 
-● CRUD de usuários. 
+Mesmo sendo um sistema simples, trabalharemos com três papéis para treinar permissões e lógica condicional.
 
-● CRUD de setores. 
+### Operador
 
-● Configura parâmetros da simulação: 
+- Apenas visualiza os KPIs  
+- Acessa gráficos e histórico  
+- Não altera parâmetros  
+- Não configura simulação
 
-○ intervalos, 
+### Supervisor
 
-○ limites de KPI, 
+- Visualiza tudo que o operador vê  
+- Pode filtrar dashboards por setores  
+- Pode ajustar metas diárias  
+- Pode exportar dados do histórico
 
-○ tamanho da janela de histórico. 
+### Administrador
 
-● Acessa todas as telas. 
+- CRUD de usuários  
+- CRUD de setores  
+- Configura parâmetros da simulação:
+  - Intervalos  
+  - Limites de KPI  
+  - Tamanho da janela de histórico  
+- Acessa todas as telas
 
-✔ **Funcionalidades Essenciais do MVP** 
+## ✔ Funcionalidades Essenciais do MVP
 
-✔ **1\. Autenticação** 
+### ✔ 1. Autenticação
 
-● Login 
+- Login  
+- Logout  
+- Guard de rotas  
+- Permissões por papel
 
-● Logout 
+### ✔ 2. Dashboard em Fake Real-Time
 
-● Guard de rotas 
+Atualização automática a cada 5 segundos (ou configurável). KPIs mínimos:
 
-● Permissões por papel  
-✔ **2\. Dashboard em Fake Real-Time** 
+- Produção simulada (unidades/h)  
+- Consumo energético simulado  
+- Temperatura simulada  
+- Status “Verde / Amarelo / Vermelho” baseado em limites
 
-Atualização automática a cada 5 segundos (ou configurável). KPIs mínimos: 
+Cada atualização deve:
 
-● Produção simulada (unidades/h) 
+- Substituir o valor anterior  
+- Alimentar os gráficos  
+- Registrar no histórico diário
 
-● Consumo energético simulado 
+### ✔ 3. Gráficos
 
-● Temperatura simulada 
+Mínimo de 3 gráficos:
 
-● Status “Verde / Amarelo / Vermelho” baseado em limites 
+- Linha (Line Chart): histórico de temperatura  
+- Barra (Bar Chart): comparação de produção por setor  
+- Gauge ou KPI Card: nível atual de consumo
 
-Cada atualização deve: 
+Os gráficos devem ser atualizados automaticamente.
 
-● substituir o valor anterior, 
+### ✔ 4. Histórico Diário
 
-● alimentar os gráficos, 
+Cada atualização gerada pelo “fake backend” deve ser armazenada localmente (localStorage ou service interno).
 
-● registrar no histórico diário. 
+Histórico deve mostrar:
 
-✔ **3\. Gráficos** 
+- Hora  
+- Valores gerados  
+- Setor selecionado (se aplicável)  
+- Alertas gerados
 
-Mínimo de 3 gráficos: 
+### ✔ 5. Configurações da Simulação (somente admin)
 
-● **Linha (Line Chart)**: histórico de temperatura 
+Admin pode ajustar:
 
-**Barra (Bar Chart)**: comparação de produção por setor 
+- Intervalo de atualização (ex.: 3s, 5s, 10s)  
+- Limites de alerta (por KPI)  
+- Tipo de gráfico  
+- Ativar/desativar setores
 
-● **Gauge ou KPI Card**: nível atual de consumo 
+## Cenário Industrial que o Projeto Simula
 
-Os gráficos devem ser atualizados automaticamente. 
+Imagine que a fábrica está em fase de integração digital. As máquinas ainda não enviam dados reais, mas a empresa quer treinar o time para:
 
-✔ **4\. Histórico Diário** 
+- Interpretar painéis  
+- Tomar decisões baseadas em dados  
+- Visualizar comportamento de KPIs ao longo do turno  
+- Construir interfaces de monitoramento real-time
 
-Cada atualização gerada pelo “fake backend” deve ser armazenada localmente (localStorage ou service interno). 
+O MVP simula exatamente o comportamento de um dashboard industrial:
 
-Histórico deve mostrar: 
+- Dados oscilam de forma natural  
+- Valores podem subir, cair ou gerar alerta  
+- Gráficos mostram tendência  
+- Histórico permite análise rápida  
+- Supervisores acompanham metas
 
-● hora 
+Este tipo de dashboard é extremamente comum em:
 
-● valores gerados 
+- Centros de controle  
+- Salas de monitoramento  
+- Chão de fábrica  
+- Painéis de energia  
+- Núcleos de qualidade  
+- Setores de manutenção
 
-● setor selecionado (se aplicável) 
+Mesmo sendo “fake real-time”, o funcionamento é idêntico ao real, apenas sem sensores e sem máquinas conectadas.
 
-● alertas gerados 
+## Visão do Sistema
 
-✔ **5\. Configurações da Simulação (somente admin)** 
+O sistema deve permitir aos usuários acompanhar indicadores de forma clara, rápida e visual.
 
-Admin pode ajustar: 
+O dashboard mostra:
 
-● intervalo de atualização (ex.: 3s, 5s, 10s) 
+- KPIs principais atualizados automaticamente  
+- Tendências (aumentando / caindo)  
+- Cores de alerta (verde / amarelo / vermelho)  
+- Gráficos dinâmicos  
+- Histórico diário
 
-● limites de alerta (por KPI) 
+A experiência deve ser fluida, com gráficos animados e layout limpo.
 
-● tipo de gráfico 
+## Como Funciona na Fábrica
 
-● ativar/desativar setores
+No mundo real, sensores enviam dados continuamente para APIs industriais. Aqui, substituímos sensores por geradores de dados que emitem valores aleatórios dentro de intervalos definidos.
 
-**Cenário Industrial que o Projeto Simula** 
+| KPI         | Intervalo Padrão | Comportamento           |
+|-------------|------------------|--------------------------|
+| Produção    | 100 - 300        | Varia lentamente         |
+| Temperatura | 20 - 60°C        |                          |
+| Consumo     | 20 - 200kWh      | Oscila conforme carga    |
 
-Imagine que a fábrica está em fase de integração digital. As máquinas **ainda não enviam dados reais**, mas a empresa quer treinar o time para: 
+A cada 5 segundos:
 
-● interpretar painéis; 
+1. O serviço gera novos valores  
+2. O dashboard recebe via observable  
+3. Os KPIs são atualizados  
+4. O histórico ganha uma nova linha  
+5. Gráficos são pré-renderizados
 
-● tomar decisões baseadas em dados; 
+## Fluxo Geral da Aplicação (Simplificado)
 
-● visualizar comportamento de KPIs ao longo do turno; 
+- O operador acessa o dashboard e acompanha em tempo real os KPIs que são atualizados automaticamente pelo sistema  
+- O supervisor analisa os gráficos, verifica tendências e compara os valores com as metas configuradas para o dia  
+- O administrador gerencia usuários, configura os parâmetros da simulação e ajusta os limites de alerta dos indicadores
 
-● construir interfaces de monitoramento real-time. 
-
-O MVP simula exatamente o comportamento de um dashboard industrial: 
-
-● dados oscilam de forma natural, 
-
-● valores podem subir, cair ou gerar alerta, 
-
-● gráficos mostram tendência, 
-
-● histórico permite análise rápida, 
-
-● supervisores acompanham metas. 
-
-Este tipo de dashboard é extremamente comum em: 
-
-● centros de controle, 
-
-● salas de monitoramento, 
-
-● chão de fábrica, 
-
-● painéis de energia, 
-
-● núcleos de qualidade, 
-
-● setores de manutenção. 
-
-Mesmo sendo “fake real-time”, o funcionamento é idêntico ao real, apenas sem sensores e sem máquinas conectadas. 
-
-**Visão do Sistema** 
-
-O sistema deve permitir aos usuários acompanhar indicadores de forma clara, rápida e visual. 
-
-O dashboard mostra: 
-
-● KPIs principais atualizados automaticamente 
-
-● Tendências (aumentando / caindo) 
-
-● Cores de alerta (verde / amarelo / vermelho) 
-
-● Gráficos dinâmicos 
-
-● Histórico diário 
-
-A experiência deve ser fluida, com gráficos animados e layout limpo. 
-
-**Como Funciona na Fábrica**  
-No mundo real, sensores enviam dados continuamente para APIs industriais. Aqui, substituímos sensores por geradores de dados que emitem valores aleatórios dentro de intervalos definidos. 
-
-| KPI  | Intervalo Padrão  | Comportamento |
-| :---- | :---- | :---- |
-| Produção  | 100 \- 300  | varia lentamente |
-| Temperatura  | 20 \- 60c |  |
-| Consumo  | 20 \- 200kWh  | oscila conforme carga |
-
-A cada 5 segundos: 
-
-1\. O serviço gera novos valores. 
-
-2\. O dashboard recebe via observable. 
-
-3\. Os KPIs são atualizados. 
-
-4\. O histórico ganha uma nova linha. 
-
-5\. Gráficos são pré-renderizados. 
-
-**Fluxo Geral da Aplicação (Simplificado)** 
-
-● O **operador** acessa o dashboard e acompanha em tempo real os KPIs que são atualizados automaticamente pelo sistema. 
-
-● O **supervisor** analisa os gráficos, verifica tendências e compara os valores com as metas configuradas para o dia. 
-
-● O **administrador** gerencia usuários, configura os parâmetros da simulação e ajusta os limites de alerta dos indicadores.
