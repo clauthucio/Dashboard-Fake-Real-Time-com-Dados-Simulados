@@ -72,23 +72,21 @@ Acesse: `http://localhost:4200/login`
 ## 📂 Estrutura do Projeto
 
 ```
+
 src/
 ├── app/
-├── auth/
-│   ├── auth.guard.ts
-│   ├── redirect.guard.ts
-│   └── role.guard.ts
-├── pages/
-│   ├── admin/
-│   ├── login/
-│   ├── operador/
-│   └── supervisor/
-├── services/
-│   └── api.service.ts
-│   └── auth.service.ts
-├── shared/
-│    └── components/ui
-│    └── utils/
+│    ├── core
+│    │    ├── components
+│    │    ├── services
+│    │    ├── types
+│    │    └── guards
+│    ├── shared
+│    │    ├── components
+│    │    ├── services
+│    │    ├── types
+│    │    └── guards
+│    └── pages
+
 
 ```
 
