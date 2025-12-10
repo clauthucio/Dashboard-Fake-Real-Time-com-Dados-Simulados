@@ -18,13 +18,13 @@ export interface LoginResponse {
   providedIn: 'root',
 })
 export class Api {
-  private baseUrl = 'http://localhost:3000';
+  private baseUrl = 'https://api-notry-vision.vercel.app';
   private http = inject(HttpClient);
 
   // getEndpointUrl(endpoint: string): string {
   //   return `${this.baseUrl}/${endpoint}`
   // }
   login(payload: LoginPayload): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.baseUrl}/login`, payload);
+    return this.http.post<LoginResponse>(`${this.baseUrl}/api/login`, payload);
   }
 }

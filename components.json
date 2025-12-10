@@ -1,0 +1,13 @@
+{
+  "style": "css",
+  "packageManager": "bun",
+  "tailwind": {
+    "css": "src/styles.css",
+    "baseColor": "gray",
+    "cssVariables": true
+  },
+  "aliases": {
+    "components": "src/shared/components/ui",
+    "utils": "src/shared/utils"
+  }
+}
