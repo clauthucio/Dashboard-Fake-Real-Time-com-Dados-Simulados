@@ -1,59 +1,109 @@
-# NotryVision
+# Notry Vision - Dashboard Administrativo
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.0.
+Sistema de gerenciamento com autenticação para **Admin**, **Operador** e **Supervisor**, desenvolvido em **Angular 20** com **Zard UI** (shadcn/ui para Angular).
 
-## Development server
+## 📱 Páginas
 
-To start a local development server, run:
+| Cargo | URL | Funcionalidades |
+|-------|-----|-----------------|
+| admin | `/admin` | Dashboard completo + logout |
+| operador | `/operador` | Interface operacional + logout |
+| supervisor | `/supervisor` | Painel de supervisão + logout |
+| Login | `/login` | Formulário de autenticação |
 
+## 🔌 API Externa
+
+**URL Base:** `https://api-notry-vision.vercel.app/api`
+
+### `POST /api/login`
+
+**Entrada:**
+```json
+{
+  "username": "admin",
+  "password": "123456"
+}
+```
+
+**Saída (200):**
+```json
+{
+  "id": 1,
+  "username": "admin",
+  "name": "Administrador",
+  "cargo": "admin"
+}
+```
+
+**Erro (401):**
+```json
+{ "message": "credenciais inválidas" }
+```
+
+
+
+## 🛠️ Instalação e Execução
+
+### Pré-requisitos
+- Node.js 20+
+- Angular CLI 20+
+
+### 1. Clonar e Instalar
+```bash
+git clone <seu-repo>
+cd notry-vision
+npm install
+```
+
+### 2. Configurar API (opcional)
+Edite `src/app/services/api.service.ts`:
+```ts
+baseUrl = environment.production 
+  ? 'https://api-notry-vision.vercel.app/api'
+  : 'http://localhost:3000/api';
+```
+
+### 3. Executar
 ```bash
 ng serve
 ```
+Acesse: `http://localhost:4200/login`
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 📂 Estrutura do Projeto
 
-## Code scaffolding
+```
+src/
+├── app/
+├── auth/
+│   ├── auth.guard.ts
+│   ├── redirect.guard.ts
+│   └── role.guard.ts
+├── pages/
+│   ├── admin/
+│   ├── login/
+│   ├── operador/
+│   └── supervisor/
+├── services/
+│   └── api.service.ts
+│   └── auth.service.ts
+├── shared/
+│    └── components/ui
+│    └── utils/
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🎨 Tecnologias
 
-```bash
-ng generate --help
-```
+- **Framework:** Angular 20 (Signals)
+- **UI:** Zard UI + Tailwind CSS + SCSS
+- **Linting:** ESLint + Prettier
+- **HTTP:** Angular HttpClient
+- **Rotas:** Angular Router (lazy loading)
 
-## Building
+## 👥 Credenciais de Teste
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+| Usuário | Senha | Cargo |
+|---------|-------|-------|
+| `admin` | `123456` | admin |
+| `operador1` | `123456` | operador |
+| `supervisor1` | `123456` | supervisor |
