@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { ZardButtonComponent } from "../ui/button/button.component";
-import { AuthService } from 'src/services/auth.service';
+import { AuthService } from '@core/services/auth.service';
+import { ZardButtonComponent } from '@shared/components/ui/button/button.component';
+
+
 
 @Component({
   selector: 'app-button-logout',

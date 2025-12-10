@@ -1,11 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { Api, LoginResponse } from 'src/services/api.service';
-import { AuthService } from 'src/services/auth.service';
-import { ZardButtonComponent } from "src/shared/components/ui/button/button.component";
-import { ZardCardComponent } from "src/shared/components/ui/card/card.component";
-import { generateId } from 'src/shared/utils/merge-classes';
+import { Api } from '@shared/services/api.service';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { ZardButtonComponent } from "@shared/components/ui/button/button.component";
+import { ZardCardComponent } from "@shared/components/ui/card/card.component";
+import { generateId } from '@shared/utils/merge-classes';
 import { FormsModule } from '@angular/forms';
+import { LoginResponse } from '@core/types';
 
 @Component({
   selector: 'app-login',

@@ -1,18 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { LoginPayload, LoginResponse } from '@core/types';
 import { Observable } from 'rxjs';
 
-export interface LoginPayload {
-  username: string;
-  password: string;
-}
 
-export interface LoginResponse {
-  id: number;
-  username: string;
-  name: string;
-  cargo: 'admin' | 'supervisor' | 'operador';
-}
 
 @Injectable({
   providedIn: 'root',

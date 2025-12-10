@@ -1,12 +1,13 @@
-import { Routes } from '@angular/router';
-import { RedirectGuard } from '../auth/redirect.guard';
-import { Login } from '../pages/login/login';
-import { AuthGuard } from '../auth/auth.guard';
-import { RoleGuard } from '../auth/role.guard';
-import { Admin } from '../pages/admin/admin';
-import { Supervisor } from '../pages/supervisor/supervisor';
-import { Operador } from '../pages/operador/operador';
-import { AcessoNegado } from '../pages/acesso-negado/acesso-negado';
+import { Routes } from "@angular/router";
+import { AuthGuard } from "@core/guards/auth.guard";
+import { RedirectGuard } from "@core/guards/redirect.guard";
+import { RoleGuard } from "@core/guards/role.guard";
+import { AcessoNegado } from "@pages/acesso-negado/acesso-negado";
+import { Admin } from "@pages/admin/admin";
+import { Login } from "@pages/login/login";
+import { Operador } from "@pages/operador/operador";
+import { Supervisor } from "@pages/supervisor/supervisor";
+
 
 export const routes: Routes = [
   // LOGIN

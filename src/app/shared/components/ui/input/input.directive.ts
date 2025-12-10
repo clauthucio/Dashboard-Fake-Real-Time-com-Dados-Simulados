@@ -3,7 +3,7 @@ import type { ClassValue } from 'clsx';
 
 import { computed, Directive, ElementRef, inject, input } from '@angular/core';
 
-import { mergeClasses, transform } from 'src/shared/utils/merge-classes';
+import { mergeClasses, transform } from '@shared/utils/merge-classes';
 import { inputVariants, type ZardInputVariants } from './input.variants';
 
 @Directive({

@@ -3,7 +3,7 @@ import { afterNextRender, ChangeDetectionStrategy, Component, computed, type OnD
 import type { ClassValue } from 'clsx';
 
 import { buttonVariants, type ZardButtonVariants } from './button.variants';
-import { mergeClasses, transform } from 'src/shared/utils/merge-classes';
+import { mergeClasses, transform } from '@shared/utils/merge-classes';
 import { ZardIconComponent } from '../icon/icon.component';
 
 @Component({
