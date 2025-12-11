@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { ButtonLogout } from "@core/components/button-logout/button-logout";
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { ButtonLogout } from '@core/components/button-logout/button-logout';
 
 @Component({
   selector: 'app-admin',
-  imports: [ButtonLogout],
+  imports: [ButtonLogout, RouterOutlet, RouterLink],
   templateUrl: './admin.html',
   styleUrl: './admin.css',
 })
-export class Admin {
-
-}
+export class Admin {}
