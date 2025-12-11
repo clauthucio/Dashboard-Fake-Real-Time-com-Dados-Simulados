@@ -33,6 +33,7 @@ import {
   Eye,
   File,
   FileText,
+  Factory,
   Folder,
   FolderCode,
   FolderOpen,
@@ -169,6 +170,7 @@ export const ZARD_ICONS = {
   'list-filter-plus': ListFilterPlus,
   trash: Trash2,
   tag: Tag,
+  factory:Factory
 } as const satisfies Record<string, LucideIconData>;
 
 export declare type ZardIcon = keyof typeof ZARD_ICONS | LucideIconData;

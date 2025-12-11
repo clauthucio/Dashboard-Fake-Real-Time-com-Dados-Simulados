@@ -1,3 +1,5 @@
+import { ZardIcon } from "@shared/components/ui/icon/icons";
+
 export interface LoginPayload {
   username: string;
   password: string;
@@ -27,4 +29,11 @@ export interface SimulationConfig {
   intervalMs: number;
   kpiLimit: number;
   historyWindowSize: number;
+}
+
+
+export interface MenuLayout {
+  label: string;
+  icon: ZardIcon;
+  path: string;
 }

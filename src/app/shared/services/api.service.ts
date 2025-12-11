@@ -7,12 +7,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class Api {
-  private baseUrl = 'https://api-notry-vision.vercel.app';
+  private baseUrl = 'https://api-notry-vision.onrender.com';
   private http = inject(HttpClient);
 
   // Auth
   login(payload: LoginPayload): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.baseUrl}/api/login`, payload);
+    return this.http.post<LoginResponse>(`${this.baseUrl}/auth/login`, payload);
   }
 
   // Users

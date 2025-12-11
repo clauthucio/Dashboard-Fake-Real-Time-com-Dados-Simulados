@@ -7,7 +7,7 @@
     "cssVariables": true
   },
   "aliases": {
-    "components": "src/shared/components/ui",
-    "utils": "src/shared/utils"
+    "components": "src/app/shared/components/ui",
+    "utils": "src/app/shared/utils"
   }
 }
