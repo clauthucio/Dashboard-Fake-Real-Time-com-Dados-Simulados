@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { LoginPayload, LoginResponse } from '@core/types';
+import { LoginPayload, LoginResponse, User } from '@core/types';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -15,46 +15,46 @@ export class Api {
     return this.http.post<LoginResponse>(`${this.baseUrl}/auth/login`, payload);
   }
 
-  // Users
-  getUsers(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/api/users`);
+  // User
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.baseUrl}/user`);
   }
 
   createUser(user: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/api/users`, user);
+    return this.http.post<any>(`${this.baseUrl}/user`, user);
   }
 
-  updateUser(id: number, user: any): Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/api/users/${id}`, user);
+  updateUser(id: string | number, user: any): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/user/${id}`, user);
   }
 
-  deleteUser(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.baseUrl}/api/users/${id}`);
+  deleteUser(id: string | number): Observable<any> {
+    return this.http.delete<any>(`${this.baseUrl}/user/${id}`);
   }
 
   // Sectors
   getSectors(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/api/sectors`);
+    return this.http.get<any[]>(`${this.baseUrl}/auth/sectors`);
   }
 
   createSector(sector: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/api/sectors`, sector);
+    return this.http.post<any>(`${this.baseUrl}/auth/sectors`, sector);
   }
 
   updateSector(id: number, sector: any): Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/api/sectors/${id}`, sector);
+    return this.http.put<any>(`${this.baseUrl}/auth/sectors/${id}`, sector);
   }
 
   deleteSector(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.baseUrl}/api/sectors/${id}`);
+    return this.http.delete<any>(`${this.baseUrl}/auth/sectors/${id}`);
   }
 
   // Config
   getConfig(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/api/simulation/config`);
+    return this.http.get<any>(`${this.baseUrl}/auth/simulation/config`);
   }
 
   updateConfig(config: any): Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/api/simulation/config`, config);
+    return this.http.put<any>(`${this.baseUrl}/auth/simulation/config`, config);
   }
 }

@@ -1,4 +1,4 @@
-import { ZardIcon } from "@shared/components/ui/icon/icons";
+import { ZardIcon } from '@shared/components/ui/icon/icons';
 
 export interface LoginPayload {
   username: string;
@@ -6,18 +6,18 @@ export interface LoginPayload {
 }
 
 export interface LoginResponse {
-  id: number;
+  id: number | string;
   username: string;
   name: string;
   cargo: 'admin' | 'supervisor' | 'operador';
 }
 
 export interface User {
-  id: number;
+  id: number | string; // Spec says string/uuid, but keeping number if existing code relies on it heavily, though spec says "pattern: ^([0-9a-fA-F]{8}..." which is UUID. Let's switch to string or any. Let's use string to be safe.
+  username: string;
   name: string;
-  email: string;
-  role: 'admin' | 'supervisor' | 'operador';
-  sectorId?: number;
+  cargo: 'admin' | 'supervisor' | 'operador';
+  password?: string; // Optional for listing, required for creation
 }
 
 export interface Sector {
@@ -30,7 +30,6 @@ export interface SimulationConfig {
   kpiLimit: number;
   historyWindowSize: number;
 }
-
 
 export interface MenuLayout {
   label: string;
