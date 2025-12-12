@@ -1,13 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
-
-export interface User {
-  id: string;
-  username: string;
-  name: string;
-  password: string;
-  role: 'admin' | 'supervisor' | 'operador';
-}
+import { LoginResponse } from '@core/types';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +9,7 @@ export class AuthService {
   private userKey = 'user_logged';
   private router = inject(Router);
 
-  login(user: User) {
+  login(user: LoginResponse) {
     localStorage.setItem(this.userKey, JSON.stringify(user));
   }
 
@@ -25,9 +18,18 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  getUser(): User | null {
+  getUser(): LoginResponse | null {
     const data = localStorage.getItem(this.userKey);
-    return data ? JSON.parse(data) : null;
+    if (!data) return null;
+
+    const user = JSON.parse(data);
+    // Validate if data has the new 'cargo' field. If not (stale data), force logout behavior by returning null.
+    if (!user.cargo) {
+      localStorage.removeItem(this.userKey);
+      return null;
+    }
+
+    return user;
   }
 
   isLogged() {
@@ -37,6 +39,6 @@ export class AuthService {
   hasRole(roles: string[]): boolean {
     const user = this.getUser();
     if (!user) return false;
-    return roles.includes(user.role);
+    return roles.includes(user.cargo);
   }
 }

@@ -2,15 +2,15 @@ import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Api } from '@shared/services/api.service';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { ZardButtonComponent } from "@shared/components/ui/button/button.component";
-import { ZardCardComponent } from "@shared/components/ui/card/card.component";
+import { ZardButtonComponent } from '@shared/components/ui/button/button.component';
+import { ZardCardComponent } from '@shared/components/ui/card/card.component';
 import { generateId } from '@shared/utils/merge-classes';
 import { FormsModule } from '@angular/forms';
 import { LoginResponse } from '@core/types';
 
 @Component({
   selector: 'app-login',
-  imports: [ZardButtonComponent, ZardCardComponent,FormsModule],
+  imports: [ZardButtonComponent, ZardCardComponent, FormsModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -37,11 +37,10 @@ export class Login {
         // console.log('Login OK:', response)
 
         this.auth.login({
-          id: 'number',
+          id: response.id || 123456,
           username: credentials.username,
           name: response.name || 'Nome do Usuario',
-          password: credentials.password,
-          role: response.cargo,
+          cargo: response.cargo,
         });
 
         this.router.navigate(['/' + response.cargo]);

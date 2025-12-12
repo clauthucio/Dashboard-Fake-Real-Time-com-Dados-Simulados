@@ -15,14 +15,14 @@ export class UsersComponent {
   private userService = inject(UserService);
   users$ = this.userService.getUsers();
 
-  userForm: Partial<User> = { role: 'operador' };
+  userForm: Partial<User> = { cargo: 'operador' };
   showForm = false;
   isEditing = false;
 
   startAdd() {
     this.showForm = true;
     this.isEditing = false;
-    this.userForm = { role: 'operador' };
+    this.userForm = { cargo: 'operador' };
   }
 
   startEdit(user: User) {
@@ -43,10 +43,10 @@ export class UsersComponent {
   cancel() {
     this.showForm = false;
     this.isEditing = false;
-    this.userForm = { role: 'operador' };
+    this.userForm = { cargo: 'operador' };
   }
 
-  delete(id: number) {
+  delete(id: number | string) {
     if (confirm('Are you sure?')) {
       this.userService.deleteUser(id);
     }

@@ -13,7 +13,7 @@ export class UserService {
     return this.api.getUsers();
   }
 
-  getUserById(id: number): Observable<User> {
+  getUserById(id: number | string): Observable<User> {
     return this.api.getUsers() as any;
   }
 
@@ -21,11 +21,11 @@ export class UserService {
     return this.api.createUser(user);
   }
 
-  updateUser(id: number, user: Partial<User>): Observable<User> {
+  updateUser(id: number | string, user: Partial<User>): Observable<User> {
     return this.api.updateUser(id, user);
   }
 
-  deleteUser(id: number): Observable<boolean> {
+  deleteUser(id: number | string): Observable<boolean> {
     return this.api.deleteUser(id);
   }
 }
