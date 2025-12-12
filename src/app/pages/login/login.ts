@@ -15,6 +15,9 @@ import { LoginResponse } from '@core/types';
   styleUrl: './login.css',
 })
 export class Login {
+  isclicked = signal<boolean>(false);
+  showError = signal<boolean>(false);
+
   private auth = inject(AuthService);
   private router = inject(Router);
   private ApiService = inject(Api);
@@ -27,6 +30,10 @@ export class Login {
   password = signal('');
 
   loginAuth() {
+    if (this.isclicked()) return;
+
+    this.isclicked.set(true); //desabilita o botao
+
     const credentials = {
       username: this.user(),
       password: this.password(),
@@ -43,12 +50,17 @@ export class Login {
           cargo: response.cargo,
         });
 
+        this.isclicked.set(false); //habilita o botao
         this.router.navigate(['/' + response.cargo]);
         // this.auth.login(response)
         // this.router.navigate(['/dashboard'])
       },
       error: (error) => {
-        console.error('Erro de login kakakakk', error);
+        // console.log('Erro de login kakakakk', error.status);
+        if (error.status == 401) {
+          this.showError.set(true);
+        }
+        this.isclicked.set(false);
       },
     });
   }
