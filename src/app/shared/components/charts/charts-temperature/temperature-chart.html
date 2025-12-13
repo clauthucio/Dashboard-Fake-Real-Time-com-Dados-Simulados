@@ -1,0 +1,21 @@
+ <z-card
+ [zTitle]="sector"
+  class="flex items-center justify-center flex-col "
+ >
+ <div class="w-full h-52 flex items-center justify-center">
+   <ngx-gauge
+    [value]="temperatura"
+    [thresholds]="thresholdConfig"
+    type="arch"
+    [thick]="10"
+    class="h-52"
+  >
+    <ngx-gauge-value>
+        {{ temperatura }}ºc
+    </ngx-gauge-value>
+    <ngx-gauge-append>
+       <p>{{name}}</p>
+    </ngx-gauge-append>
+  </ngx-gauge>
+ </div>
+  </z-card>
