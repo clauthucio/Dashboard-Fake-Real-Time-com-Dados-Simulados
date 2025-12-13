@@ -1,7 +1,8 @@
 
 import { Component } from '@angular/core';
-import { Layout } from "@core/components/layout/layout";
+
 import { MenuLayout } from '@core/types';
+import { Layout } from '@shared/components/layout/layout';
 
 
 @Component({

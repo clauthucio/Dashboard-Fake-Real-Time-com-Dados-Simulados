@@ -1,9 +1,10 @@
 import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Api } from '@shared/services/api.service';
+
 import { Machine } from '@core/types';
 import { ModalComponent } from '@shared/components/modal/modal.component';
 import { delay, finalize } from 'rxjs/operators';
+import { Api } from '@core/services/api.service';
 
 @Component({
   selector: 'app-machines',

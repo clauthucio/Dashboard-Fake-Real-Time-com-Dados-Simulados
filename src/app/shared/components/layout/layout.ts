@@ -5,11 +5,12 @@ import { FooterComponent } from "@shared/components/ui/layout/footer.component";
 import { HeaderComponent } from "@shared/components/ui/layout/header.component";
 import { ZardButtonComponent } from "@shared/components/ui/button/button.component";
 import { ZardIconComponent } from "@shared/components/ui/icon/icon.component";
-import { ButtonLogout } from "../button-logout/button-logout";
+
 import { LayoutModule } from "@shared/components/ui/layout/layout.module";
 // import { ZardSkeletonComponent } from "@shared/components/ui/skeleton/skeleton.component";
 import { MenuLayout } from '@core/types';
 import { RouterLink, RouterOutlet } from "@angular/router";
+import { ButtonLogout } from '@shared/components/button-logout/button-logout';
 
 @Component({
   selector: 'app-layout',

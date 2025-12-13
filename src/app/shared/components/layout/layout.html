@@ -18,7 +18,7 @@
       </z-header>
 
       <z-layout class="h-full">
-        <z-sidebar [zWidth]="250" class="!p-0">
+        <z-sidebar [zWidth]="250" class="p-0!">
           <nav class="flex h-full flex-col gap-2 p-4">
             <z-sidebar-group class="gap-3">
               <z-sidebar-group-label >Menu</z-sidebar-group-label>
@@ -43,7 +43,7 @@
         </z-sidebar>
 
         <z-layout>
-          <z-content class="min-h-[200px]">
+          <z-content class="min-h-50">
             <div class="space-y-4">
               <router-outlet/>
               <!-- <z-skeleton class="h-32 w-full" />

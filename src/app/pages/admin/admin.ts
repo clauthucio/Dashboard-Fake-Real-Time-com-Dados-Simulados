@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuLayout } from '@core/types';
-import { Layout } from '@core/components/layout/layout';
+import { Layout } from '@shared/components/layout/layout';
+
 
 @Component({
   selector: 'app-admin',
