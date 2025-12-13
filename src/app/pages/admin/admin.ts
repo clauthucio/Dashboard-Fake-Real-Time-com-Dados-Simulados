@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import { ButtonLogout } from '@core/components/button-logout/button-logout';
+import { MenuLayout } from '@core/types';
+import { Layout } from '@core/components/layout/layout';
 
 @Component({
   selector: 'app-admin',
-  imports: [ButtonLogout, RouterOutlet, RouterLink],
+  imports: [Layout],
   templateUrl: './admin.html',
   styleUrl: './admin.css',
 })
-export class Admin {}
+export class Admin {
+  menu: MenuLayout[] = [
+    { label: 'Usuários', icon: 'users', path: '/admin/users' },
+    { label: 'Máquinas', icon: 'factory', path: '/admin/machines' },
+  ];
+}

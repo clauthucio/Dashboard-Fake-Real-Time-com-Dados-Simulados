@@ -29,16 +29,11 @@ export const routes: Routes = [
           import('./pages/admin/components/users/users.component').then((m) => m.UsersComponent),
       },
       {
-        path: 'sectors',
+        path: 'machines',
         loadComponent: () =>
-          import('./pages/admin/components/sectors/sectors.component').then(
-            (m) => m.SectorsComponent
+          import('./pages/admin/components/machines/machines.component').then(
+            (m) => m.MachinesComponent
           ),
-      },
-      {
-        path: 'config',
-        loadComponent: () =>
-          import('./pages/admin/components/config/config.component').then((m) => m.ConfigComponent),
       },
       { path: '', redirectTo: 'users', pathMatch: 'full' },
     ],
