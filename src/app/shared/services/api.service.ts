@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { LoginPayload, LoginResponse, User } from '@core/types';
+import { LoginPayload, LoginResponse, User, Machine } from '@core/types';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -32,29 +32,8 @@ export class Api {
     return this.http.delete<any>(`${this.baseUrl}/user/${id}`);
   }
 
-  // Sectors
-  getSectors(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/auth/sectors`);
-  }
-
-  createSector(sector: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/auth/sectors`, sector);
-  }
-
-  updateSector(id: number, sector: any): Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/auth/sectors/${id}`, sector);
-  }
-
-  deleteSector(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.baseUrl}/auth/sectors/${id}`);
-  }
-
-  // Config
-  getConfig(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/auth/simulation/config`);
-  }
-
-  updateConfig(config: any): Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/auth/simulation/config`, config);
+  // Machines
+  getMachines(): Observable<Machine[]> {
+    return this.http.get<Machine[]>(`${this.baseUrl}/machines`);
   }
 }
