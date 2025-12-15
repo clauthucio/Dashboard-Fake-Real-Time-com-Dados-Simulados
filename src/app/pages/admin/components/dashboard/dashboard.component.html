@@ -93,9 +93,18 @@
   </div>
 </div>
 
-<app-production-chart [machines]="data.machines" class="mb-6 block" />
+<!-- Charts Grid Row -->
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-6">
+  <!-- Main Production Chart (Left - Wider but reduced to 3/5) -->
+  <div class="lg:col-span-3">
+    <app-production-chart [machines]="data.machines" class="block h-full" />
+  </div>
 
-<app-machine-bar-charts [machines]="data.machines" />
+  <!-- Side Bar Charts (Right - Broader 2/5) -->
+  <div class="lg:col-span-2">
+    <app-machine-bar-charts [machines]="data.machines" class="block h-full" />
+  </div>
+</div>
 
 <app-machine-realtime-metrics [machines]="data.machines" />
 
