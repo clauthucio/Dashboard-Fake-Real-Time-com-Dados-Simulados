@@ -1,8 +1,0 @@
-/* temperature-chart.css */
-.gauge-temp {
-  display: block;
-  height: 260px;
-  /* 🔼 aumenta o espaço geral */
-  padding: 50px 50px;
-  /* 🔼 cria “respiro” para os números */
-}
