@@ -44,3 +44,5 @@ Thumbs.db
 
 bun.lock
 package-lock.json
+pnpm-workspace.yaml
+pnpm-lock.yaml
