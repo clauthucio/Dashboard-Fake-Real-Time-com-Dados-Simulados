@@ -1,0 +1,104 @@
+<div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 mb-6">
+  <div class="flex justify-between items-center mb-6">
+    <div class="flex items-center gap-2">
+      <div class="h-2 w-2 rounded-full bg-gray-400"></div>
+      <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest">HISTÓRICO RECENTE</h3>
+    </div>
+  </div>
+
+  <div class="overflow-x-auto">
+    <table class="w-full">
+      <thead>
+        <tr class="text-left border-b border-gray-100">
+          <th class="pb-6 pl-6 text-xs font-bold text-gray-400 uppercase tracking-wider w-40">
+            Horário
+          </th>
+          <th class="pb-6 text-xs font-bold text-gray-400 uppercase tracking-wider pl-4">
+            Máquina
+          </th>
+          <th class="pb-6 text-xs font-bold text-gray-400 uppercase tracking-wider text-center">
+            Output
+          </th>
+          <th class="pb-6 text-xs font-bold text-gray-400 uppercase tracking-wider text-center">
+            Temp.
+          </th>
+          <th class="pb-6 pr-6 text-right text-xs font-bold text-gray-400 uppercase tracking-wider">
+            Consumo
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-50/50">
+        @for (item of paginatedHistory(); track item.id + item.time) {
+        <tr class="hover:bg-gray-50 transition-colors group">
+          <!-- Time -->
+          <td class="py-6 pl-6 text-sm font-medium text-gray-500 font-mono whitespace-nowrap w-40">
+            {{ item.time | date : 'HH:mm:ss' }}
+          </td>
+
+          <!-- Machine -->
+          <td class="py-6 text-sm font-medium text-gray-800 pl-4">
+            <div class="flex items-center gap-3">
+              <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+              <div>
+                <div class="font-bold text-gray-700">{{ item.machineName }}</div>
+                <div class="text-xs text-gray-400 font-normal">ID: {{ item.id }}</div>
+              </div>
+            </div>
+          </td>
+
+          <!-- Output -->
+          <td class="py-6 text-sm font-bold text-gray-700 text-center">
+            {{ item.output | number }} un
+          </td>
+
+          <!-- Temp -->
+          <td class="py-6 text-sm font-bold relative text-center">
+            <span
+              class="px-3 py-1 rounded-full text-xs"
+              [class.bg-red-50]="item.temp > 50"
+              [class.text-red-500]="item.temp > 50"
+              [class.border]="item.temp > 50"
+              [class.border-red-100]="item.temp > 50"
+              [class.text-gray-700]="item.temp <= 50"
+            >
+              {{ item.temp | number : '1.0-0' }}°C
+            </span>
+          </td>
+
+          <!-- Consumo -->
+          <td class="py-6 pr-6 text-right text-sm font-bold text-gray-700">
+            {{ item.consumption | number : '1.0-0' }} kW
+          </td>
+        </tr>
+        } @if (!paginatedHistory().length) {
+        <tr>
+          <td colspan="5" class="py-8 text-center text-gray-400 text-sm">
+            Nenhum dado histórico disponível no momento.
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="flex items-center justify-between pt-2 border-t border-gray-100">
+    <span class="text-xs text-gray-400"> Página {{ currentPage() }} de {{ totalPages() }} </span>
+    <div class="flex gap-2">
+      <button
+        (click)="prevPage()"
+        [disabled]="currentPage() === 1"
+        class="px-3 py-1 text-xs font-bold text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+      >
+        Anterior
+      </button>
+      <button
+        (click)="nextPage()"
+        [disabled]="currentPage() === totalPages()"
+        class="px-3 py-1 text-xs font-bold text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+      >
+        Próxima
+      </button>
+    </div>
+  </div>
+</div>

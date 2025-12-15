@@ -4,6 +4,8 @@ import {
   ArrowRight,
   ArrowUp,
   ArrowUpRight,
+  Activity,
+  Box,
   BadgeCheck,
   Ban,
   Bell,
@@ -84,6 +86,8 @@ import {
   Users,
   X,
   Zap,
+  TrendingUp,
+  TrendingDown,
 } from 'lucide-angular';
 
 export const ZARD_ICONS = {
@@ -170,7 +174,11 @@ export const ZARD_ICONS = {
   'list-filter-plus': ListFilterPlus,
   trash: Trash2,
   tag: Tag,
-  factory:Factory
+  factory: Factory,
+  'trending-up': TrendingUp,
+  'trending-down': TrendingDown,
+  activity: Activity,
+  box: Box,
 } as const satisfies Record<string, LucideIconData>;
 
 export declare type ZardIcon = keyof typeof ZARD_ICONS | LucideIconData;
