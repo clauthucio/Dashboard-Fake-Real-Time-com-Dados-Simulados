@@ -1,0 +1,91 @@
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+  <!-- Chart 1: Production (Blue) -->
+  <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
+    <div class="flex justify-between items-start mb-6">
+      <h3 class="text-base font-bold text-blue-600">Produção por Máquina</h3>
+      <button class="p-2 hover:bg-gray-50 rounded-full transition-colors">
+        <z-icon zType="ellipsis" class="w-4 h-4 text-gray-400" />
+      </button>
+    </div>
+
+    <!-- Bars Container -->
+    <div class="h-[200px] flex items-end justify-between gap-2 md:gap-4 px-2">
+      @for (item of productionData(); track item.label) {
+      <div class="flex flex-col items-center justify-end h-full gap-2 group w-full">
+        <!-- Bar Height Container -->
+        <div class="w-full h-full flex items-end justify-center">
+          <!-- Bar -->
+          <div
+            class="w-full max-w-[40px] bg-gray-100 rounded-t-xl relative overflow-visible transition-all duration-500 hover:bg-gray-200"
+            style="height: 100%"
+          >
+            <!-- Fill -->
+            <div
+              class="absolute bottom-0 left-0 w-full bg-blue-500 rounded-t-xl transition-all duration-1000 ease-out group-hover:bg-blue-600 min-h-[4px]"
+              [style.height.%]="item.heightPercent"
+            >
+              <!-- Floating Value -->
+              <div
+                class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 text-[10px] font-bold text-gray-600 whitespace-nowrap"
+              >
+                {{ item.value | number }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Label -->
+        <span
+          class="text-[10px] md:text-xs text-gray-500 font-medium truncate w-full text-center h-[20px]"
+          >{{ item.label }}</span
+        >
+      </div>
+      }
+    </div>
+  </div>
+
+  <!-- Chart 2: Efficiency (Green) -->
+  <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
+    <div class="flex justify-between items-start mb-6">
+      <h3 class="text-base font-bold text-green-600">Produtividade (Eficiência)</h3>
+      <button class="p-2 hover:bg-gray-50 rounded-full transition-colors">
+        <z-icon zType="ellipsis" class="w-4 h-4 text-gray-400" />
+      </button>
+    </div>
+
+    <!-- Bars Container -->
+    <div class="h-[200px] flex items-end justify-between gap-2 md:gap-4 px-2">
+      @for (item of efficiencyData(); track item.label) {
+      <div class="flex flex-col items-center justify-end h-full gap-2 group w-full">
+        <!-- Bar Height Container -->
+        <div class="w-full h-full flex items-end justify-center">
+          <!-- Bar -->
+          <div
+            class="w-full max-w-[40px] bg-gray-100 rounded-t-xl relative overflow-visible transition-all duration-500 hover:bg-gray-200"
+            style="height: 100%"
+          >
+            <!-- Fill -->
+            <div
+              class="absolute bottom-0 left-0 w-full bg-green-500 rounded-t-xl transition-all duration-1000 ease-out group-hover:bg-green-600 min-h-[4px]"
+              [style.height.%]="item.heightPercent"
+            >
+              <!-- Floating Value -->
+              <div
+                class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 text-[10px] font-bold text-gray-600 whitespace-nowrap"
+              >
+                {{ item.value | number : '1.1-1' }}%
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Label -->
+        <span
+          class="text-[10px] md:text-xs text-gray-500 font-medium truncate w-full text-center h-[20px]"
+          >{{ item.label }}</span
+        >
+      </div>
+      }
+    </div>
+  </div>
+</div>

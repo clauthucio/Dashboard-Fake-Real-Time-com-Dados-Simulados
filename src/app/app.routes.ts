@@ -35,7 +35,42 @@ export const routes: Routes = [
             (m) => m.MachinesComponent
           ),
       },
-      { path: '', redirectTo: 'users', pathMatch: 'full' },
+      {
+        path: '',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./pages/admin/components/dashboard/dashboard.component').then(
+            (m) => m.DashboardComponent
+          ),
+      },
+      {
+        path: 'sectors',
+        loadComponent: () =>
+          import('./pages/admin/components/placeholder/placeholder.component').then(
+            (m) => m.PlaceholderComponent
+          ),
+      },
+      {
+        path: 'operadores',
+        loadComponent: () =>
+          import('./pages/admin/components/placeholder/placeholder.component').then(
+            (m) => m.PlaceholderComponent
+          ),
+      },
+      {
+        path: 'relatorios',
+        loadComponent: () =>
+          import('./pages/admin/components/placeholder/placeholder.component').then(
+            (m) => m.PlaceholderComponent
+          ),
+      },
+      {
+        path: 'configuracoes',
+        loadComponent: () =>
+          import('./pages/admin/components/placeholder/placeholder.component').then(
+            (m) => m.PlaceholderComponent
+          ),
+      },
     ],
   },
 

@@ -1,0 +1,150 @@
+<div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
+  <div class="flex justify-between items-center mb-6">
+    <h3 class="text-lg font-bold text-gray-800">Métricas em Tempo Real</h3>
+    <button class="p-2 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors">
+      <z-icon zType="settings" class="w-4 h-4 text-gray-500" />
+    </button>
+  </div>
+
+  <div class="overflow-x-auto">
+    <table class="w-full">
+      <thead>
+        <tr
+          class="text-left text-xs text-gray-400 uppercase tracking-wider border-b border-gray-100"
+        >
+          <th class="pb-4 pl-4">Máquina</th>
+          <th class="pb-4">Status Atual</th>
+          <th class="pb-4">Saúde</th>
+          <th class="pb-4">Temperatura (ºC)</th>
+          <th class="pb-4">Vibração / Pressão</th>
+          <th class="pb-4 pr-4 text-right">Consumo (kWh)</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-50">
+        @for (m of metrics(); track m.id) {
+        <tr class="group hover:bg-gray-50/50 transition-colors">
+          <!-- Machine Name -->
+          <td class="py-4 pl-4">
+            <div class="font-bold text-gray-700">{{ m.name }}</div>
+            <div class="text-xs text-gray-400">ID: {{ m.id }}</div>
+            <!-- Critical Alert Message Text under Machine Name if Critical -->
+            @if (m.alertMessage && (m.health === 'vermelho' || m.health === 'amarelo')) {
+            <div
+              class="mt-1 text-[10px] font-bold text-red-500 bg-red-50 border border-red-100 px-2 py-0.5 rounded-md inline-block"
+            >
+              {{ m.alertMessage }}
+            </div>
+            }
+          </td>
+
+          <!-- Status -->
+          <td class="py-4 align-top">
+            <span
+              class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize"
+              [class.bg-green-100]="
+                m.status.toLowerCase().includes('online') ||
+                m.status.toLowerCase().includes('operacional')
+              "
+              [class.text-green-800]="
+                m.status.toLowerCase().includes('online') ||
+                m.status.toLowerCase().includes('operacional')
+              "
+              [class.bg-red-100]="
+                m.status.toLowerCase().includes('offline') ||
+                m.status.toLowerCase().includes('manutencao')
+              "
+              [class.text-red-800]="
+                m.status.toLowerCase().includes('offline') ||
+                m.status.toLowerCase().includes('manutencao')
+              "
+              [class.bg-yellow-100]="
+                m.status.toLowerCase().includes('parada') ||
+                m.status.toLowerCase().includes('ociosa')
+              "
+              [class.text-yellow-800]="
+                m.status.toLowerCase().includes('parada') ||
+                m.status.toLowerCase().includes('ociosa')
+              "
+            >
+              <div
+                class="w-1.5 h-1.5 rounded-full mr-1.5"
+                [class.bg-green-500]="
+                  m.status.toLowerCase().includes('online') ||
+                  m.status.toLowerCase().includes('operacional')
+                "
+                [class.bg-red-500]="
+                  m.status.toLowerCase().includes('offline') ||
+                  m.status.toLowerCase().includes('manutencao')
+                "
+                [class.bg-yellow-500]="
+                  m.status.toLowerCase().includes('parada') ||
+                  m.status.toLowerCase().includes('ociosa')
+                "
+              ></div>
+              {{ m.status }}
+            </span>
+          </td>
+
+          <!-- Health -->
+          <td class="py-4 align-top">
+            <span
+              class="px-2.5 py-0.5 rounded-full text-xs font-bold capitalize"
+              [class.bg-green-100]="m.health === 'verde'"
+              [class.text-green-700]="m.health === 'verde'"
+              [class.bg-yellow-100]="m.health === 'amarelo'"
+              [class.text-yellow-700]="m.health === 'amarelo'"
+              [class.bg-red-100]="m.health === 'vermelho'"
+              [class.text-red-700]="m.health === 'vermelho'"
+            >
+              {{ m.health }}
+            </span>
+          </td>
+
+          <!-- Temperature + Sparkline -->
+          <td class="py-4 align-top">
+            <div class="flex items-center gap-4">
+              <span class="text-sm font-bold text-gray-700 w-12"
+                >{{ m.temp | number : '1.1-1' }}°C</span
+              >
+            </div>
+          </td>
+
+          <!-- Vibration / Pressure -->
+          <td class="py-4 align-top">
+            <div class="flex flex-col gap-1">
+              <div class="flex items-center gap-2 text-xs">
+                <span class="text-gray-400 w-16">Vibração:</span>
+                <div class="w-24 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                  <div
+                    class="h-full bg-purple-500 rounded-full"
+                    [style.width.%]="(m.vibration / 10) * 100"
+                  ></div>
+                </div>
+                <span class="font-medium text-gray-600">{{ m.vibration | number : '1.1-1' }}</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs">
+                <span class="text-gray-400 w-16">Pressão:</span>
+                <div class="w-24 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                  <div
+                    class="h-full bg-blue-500 rounded-full"
+                    [style.width.%]="(m.pressure / 100) * 100"
+                  ></div>
+                </div>
+                <span class="font-medium text-gray-600">{{ m.pressure | number : '1.0-0' }}</span>
+              </div>
+            </div>
+          </td>
+
+          <!-- Consumption -->
+          <td class="py-4 pr-4 text-right align-top">
+            <div class="text-sm font-bold text-gray-700">
+              {{ m.consumption | number : '1.2-2' }}
+            </div>
+            <div class="text-xs text-gray-400">kWh</div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
