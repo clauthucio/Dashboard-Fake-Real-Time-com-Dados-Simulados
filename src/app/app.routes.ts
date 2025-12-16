@@ -46,8 +46,8 @@ export const routes: Routes = [
       {
         path: 'sectors',
         loadComponent: () =>
-          import('./pages/admin/components/placeholder/placeholder.component').then(
-            (m) => m.PlaceholderComponent
+          import('./pages/admin/components/sectors/sectors.component').then(
+            (m) => m.SectorsComponent
           ),
       },
       {

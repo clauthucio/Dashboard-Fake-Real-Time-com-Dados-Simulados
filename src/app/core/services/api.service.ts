@@ -20,6 +20,10 @@ export class Api {
     return this.http.get<User[]>(`${this.baseUrl}/user`);
   }
 
+  getUserById(id: string | number): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/user/${id}`);
+  }
+
   createUser(user: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/user`, user);
   }
@@ -30,6 +34,27 @@ export class Api {
 
   deleteUser(id: string | number): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/user/${id}`);
+  }
+
+  // Sector
+  getSectors(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/sector`);
+  }
+
+  createSector(sector: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/sector`, sector);
+  }
+
+  updateSector(id: string | number, sector: any): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/sector/${id}`, sector);
+  }
+
+  deleteSector(id: string | number): Observable<any> {
+    return this.http.delete<any>(`${this.baseUrl}/sector/${id}`);
+  }
+
+  getSectorById(id: string | number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/sector/${id}`);
   }
 
   // Machines

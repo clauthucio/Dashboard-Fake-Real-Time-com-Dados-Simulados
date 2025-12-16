@@ -61,6 +61,7 @@ import {
   MoveRight,
   Palette,
   PanelLeft,
+  Pencil,
   Plus,
   Popcorn,
   Puzzle,
@@ -179,6 +180,8 @@ export const ZARD_ICONS = {
   'trending-down': TrendingDown,
   activity: Activity,
   box: Box,
+  pencil: Pencil,
+  'trash-2': Trash2,
 } as const satisfies Record<string, LucideIconData>;
 
 export declare type ZardIcon = keyof typeof ZARD_ICONS | LucideIconData;

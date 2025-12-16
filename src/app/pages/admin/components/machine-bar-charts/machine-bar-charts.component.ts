@@ -2,11 +2,12 @@ import { Component, computed, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Machine } from '@core/types';
 import { ZardIconComponent } from '@shared/components/ui/icon/icon.component';
+import { ZardButtonComponent } from '@shared/components/ui/button/button.component';
 
 @Component({
   selector: 'app-machine-bar-charts',
   standalone: true,
-  imports: [CommonModule, ZardIconComponent],
+  imports: [CommonModule, ZardIconComponent, ZardButtonComponent],
   templateUrl: './machine-bar-charts.component.html',
 })
 export class MachineBarChartsComponent {
