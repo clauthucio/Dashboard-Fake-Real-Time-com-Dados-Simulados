@@ -1,9 +1,7 @@
-
 import { Component } from '@angular/core';
 
 import { MenuLayout } from '@core/types';
 import { Layout } from '@shared/components/layout/layout';
-
 
 @Component({
   selector: 'app-supervisor',
@@ -16,27 +14,27 @@ export class Supervisor {
     {
       label: 'Dashboard',
       icon: 'house',
-      path: '/dashboard',
+      path: '/supervisor/dashboard',
     },
     {
       label: 'Setores',
       icon: 'factory',
-      path: '/sectors',
+      path: '/supervisor/sectors',
     },
     {
       label: 'Operadores',
       icon: 'users',
-      path: '/operadores',
+      path: '/supervisor/operadores',
     },
     {
       label: 'Relatórios',
       icon: 'file-text',
-      path: '/relatorios',
+      path: '/supervisor/relatorios',
     },
     {
       label: 'Configurações',
       icon: 'settings',
-      path: '/configuracoes',
+      path: '/supervisor/configuracoes',
     },
   ];
 }

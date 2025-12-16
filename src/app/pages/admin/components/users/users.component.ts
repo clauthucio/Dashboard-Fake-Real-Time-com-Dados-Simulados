@@ -9,6 +9,8 @@ import { ZardIconComponent } from '@shared/components/ui/icon/icon.component';
 import { ToastComponent, ToastType } from '@shared/components/ui/toast/toast.component';
 import { ZardButtonComponent } from '@shared/components/ui/button/button.component';
 import { ZardInputDirective } from '@shared/components/ui/input/input.directive';
+import { ZardSkeletonComponent } from '@shared/components/ui/skeleton/skeleton.component';
+import { delay, finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-users',
@@ -21,6 +23,7 @@ import { ZardInputDirective } from '@shared/components/ui/input/input.directive'
     ToastComponent,
     ZardButtonComponent,
     ZardInputDirective,
+    ZardSkeletonComponent,
   ],
   templateUrl: './users.component.html',
 })
@@ -56,6 +59,7 @@ export class UsersComponent implements OnInit {
   };
   showForm = false;
   isEditing = false;
+  isLoading = true;
 
   ngOnInit() {
     this.refreshUsers();
@@ -174,10 +178,20 @@ export class UsersComponent implements OnInit {
   }
 
   private refreshUsers() {
-    this.userService.getUsers().subscribe((data) => {
-      this.users = data;
-      this.updatePagedUsers();
-      this.cdr.detectChanges();
-    });
+    this.isLoading = true;
+    this.userService
+      .getUsers()
+      .pipe(
+        delay(500),
+        finalize(() => {
+          this.isLoading = false;
+          this.cdr.detectChanges();
+        })
+      )
+      .subscribe((data) => {
+        this.users = data;
+        this.updatePagedUsers();
+        this.cdr.detectChanges();
+      });
   }
 }

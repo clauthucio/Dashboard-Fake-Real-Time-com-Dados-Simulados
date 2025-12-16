@@ -53,21 +53,21 @@ export const routes: Routes = [
       {
         path: 'operadores',
         loadComponent: () =>
-          import('./pages/admin/components/placeholder/placeholder.component').then(
+          import('@shared/components/placeholder/placeholder.component').then(
             (m) => m.PlaceholderComponent
           ),
       },
       {
         path: 'relatorios',
         loadComponent: () =>
-          import('./pages/admin/components/placeholder/placeholder.component').then(
+          import('@shared/components/placeholder/placeholder.component').then(
             (m) => m.PlaceholderComponent
           ),
       },
       {
         path: 'configuracoes',
         loadComponent: () =>
-          import('./pages/admin/components/placeholder/placeholder.component').then(
+          import('@shared/components/placeholder/placeholder.component').then(
             (m) => m.PlaceholderComponent
           ),
       },
@@ -80,6 +80,44 @@ export const routes: Routes = [
     canActivate: [AuthGuard, RoleGuard],
     data: { roles: ['supervisor', 'admin'] },
     component: Supervisor,
+    children: [
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('@shared/components/placeholder/placeholder.component').then(
+            (m) => m.PlaceholderComponent
+          ),
+      },
+      {
+        path: 'sectors',
+        loadComponent: () =>
+          import('@shared/components/placeholder/placeholder.component').then(
+            (m) => m.PlaceholderComponent
+          ),
+      },
+      {
+        path: 'operadores',
+        loadComponent: () =>
+          import('@shared/components/placeholder/placeholder.component').then(
+            (m) => m.PlaceholderComponent
+          ),
+      },
+      {
+        path: 'relatorios',
+        loadComponent: () =>
+          import('@shared/components/placeholder/placeholder.component').then(
+            (m) => m.PlaceholderComponent
+          ),
+      },
+      {
+        path: 'configuracoes',
+        loadComponent: () =>
+          import('@shared/components/placeholder/placeholder.component').then(
+            (m) => m.PlaceholderComponent
+          ),
+      },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    ],
   },
 
   // OPERADOR
