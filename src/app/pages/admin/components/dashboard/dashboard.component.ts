@@ -2,23 +2,25 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Api } from '@core/services/api.service';
 import { interval, startWith, switchMap, map } from 'rxjs';
-import { ZardIconComponent } from '@shared/components/ui/icon/icon.component';
-import { ProductionChartComponent } from '../production-chart/production-chart.component';
-import { MachineBarChartsComponent } from '../machine-bar-charts/machine-bar-charts.component';
-import { MachineRealtimeMetricsComponent } from '../machine-realtime-metrics/machine-realtime-metrics.component';
-import { MachineRecentHistoryComponent } from '../machine-recent-history/machine-recent-history.component';
+import { ProductionChartComponent } from '../../../../shared/components/cards-graficos/production-chart/production-chart.component';
+import { MachineBarChartsComponent } from '../../../../shared/components/cards-graficos/machine-bar-charts/machine-bar-charts.component';
+import { MachineRealtimeMetricsComponent } from '../../../../shared/components/cards-graficos/machine-realtime-metrics/machine-realtime-metrics.component';
+import { MachineRecentHistoryComponent } from '../../../../shared/components/cards-graficos/machine-recent-history/machine-recent-history.component';
+import { DashboardCardsComponent } from '../../../../shared/components/cards-graficos/dashboard-cards/dashboard-cards.component';
 import { Machine } from '@core/types';
+import { ZardSkeletonComponent } from '../../../../shared/components/ui/skeleton/skeleton.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [
     CommonModule,
-    ZardIconComponent,
     ProductionChartComponent,
     MachineBarChartsComponent,
     MachineRealtimeMetricsComponent,
     MachineRecentHistoryComponent,
+    DashboardCardsComponent,
+    ZardSkeletonComponent,
   ],
   templateUrl: './dashboard.component.html',
 })

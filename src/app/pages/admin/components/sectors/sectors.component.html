@@ -17,7 +17,21 @@
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-50">
-        @for (sector of sectors(); track sector.id; let i = $index) {
+        <tr *ngIf="isLoading">
+          <td colspan="3" class="p-6">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4" *ngFor="let _ of [1, 2, 3]">
+                <z-skeleton class="h-4 w-8" />
+                <z-skeleton class="h-4 w-1/3" />
+                <div class="flex-1 flex justify-end gap-2">
+                  <z-skeleton class="h-8 w-8 rounded-lg" />
+                  <z-skeleton class="h-8 w-8 rounded-lg" />
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        @if (!isLoading) { @for (sector of sectors(); track sector.id; let i = $index) {
         <tr class="group hover:bg-gray-50 transition-colors">
           <td class="p-6">
             <div class="text-xs text-gray-500 font-mono">{{ i + 1 }}</div>
@@ -46,7 +60,7 @@
         <tr>
           <td colspan="3" class="p-8 text-center text-gray-400">Nenhum setor encontrado.</td>
         </tr>
-        }
+        } }
       </tbody>
     </table>
   </div>

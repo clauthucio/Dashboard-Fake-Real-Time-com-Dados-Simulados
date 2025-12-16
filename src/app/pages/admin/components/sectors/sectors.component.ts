@@ -8,6 +8,8 @@ import { ModalComponent } from '@shared/components/modal/modal.component';
 import { ToastComponent, ToastType } from '@shared/components/ui/toast/toast.component';
 import { ZardButtonComponent } from '@shared/components/ui/button/button.component';
 import { ZardInputDirective } from '@shared/components/ui/input/input.directive';
+import { ZardSkeletonComponent } from '@shared/components/ui/skeleton/skeleton.component';
+import { delay, finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-sectors',
@@ -20,6 +22,7 @@ import { ZardInputDirective } from '@shared/components/ui/input/input.directive'
     ToastComponent,
     ZardButtonComponent,
     ZardInputDirective,
+    ZardSkeletonComponent,
   ],
   templateUrl: './sectors.component.html',
 })
@@ -27,6 +30,7 @@ export class SectorsComponent {
   private sectorService = inject(SectorService);
   private cdr = inject(ChangeDetectorRef);
   sectors = signal<Sector[]>([]);
+  isLoading = true;
 
   // Toast
   toastMessage = '';
@@ -42,9 +46,19 @@ export class SectorsComponent {
   }
 
   loadSectors() {
-    this.sectorService.getSectors().subscribe((data) => {
-      this.sectors.set(data);
-    });
+    this.isLoading = true;
+    this.sectorService
+      .getSectors()
+      .pipe(
+        delay(500),
+        finalize(() => {
+          this.isLoading = false;
+          this.cdr.detectChanges();
+        })
+      )
+      .subscribe((data) => {
+        this.sectors.set(data);
+      });
   }
 
   showToast(message: string, type: ToastType = 'success') {
