@@ -17,7 +17,14 @@ export interface User {
   username: string;
   name: string;
   cargo: 'admin' | 'supervisor' | 'operador';
+  sector: string;
+  image?: string;
   password?: string; // Optional for listing, required for creation
+}
+
+export interface Sector {
+  id: number | string;
+  name: string;
 }
 
 export interface MenuLayout {

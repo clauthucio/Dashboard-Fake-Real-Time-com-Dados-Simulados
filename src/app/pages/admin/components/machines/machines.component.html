@@ -4,11 +4,6 @@
       <h2 class="text-2xl font-bold text-gray-800">Máquinas</h2>
       <p class="text-gray-500">Gestão de máquinas da fábrica</p>
     </div>
-    <button
-      class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-xl shadow-lg transition-transform hover:scale-105 flex items-center gap-2"
-    >
-      <span>+</span> Nova Máquina
-    </button>
   </div>
 
   <!-- Error State -->
@@ -33,9 +28,7 @@
       </svg>
       <span>{{ errorMessage }}</span>
     </div>
-    <button (click)="refresh()" class="text-sm font-semibold hover:underline">
-      Tentar novamente
-    </button>
+    <button z-button (click)="refresh()">Tentar novamente</button>
   </div>
 
   <!-- Loading State -->
@@ -65,7 +58,11 @@
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-50">
-        <tr *ngFor="let machine of machines" class="hover:bg-gray-50 transition-colors">
+        <tr
+          *ngFor="let machine of pagedMachines"
+          (click)="openDetails(machine)"
+          class="hover:bg-gray-50 transition-colors cursor-pointer"
+        >
           <td class="p-6 font-medium text-gray-900 leading-6">{{ machine.nome }}</td>
           <td class="p-6 text-gray-500 leading-6">{{ machine.setor }}</td>
           <td class="p-6">
@@ -98,25 +95,47 @@
             {{ machine.ultimaAtualizacao | date : 'dd/MM/yyyy HH:mm' }}
           </td>
           <td class="p-6 text-center">
-            <button
-              (click)="openDetails(machine)"
-              class="text-gray-400 hover:text-blue-600 transition-colors"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
+            <div class="flex justify-center gap-2">
+              <button
+                z-button
+                zType="outline"
+                (click)="openDetails(machine)"
+                title="Visualizar Detalhes"
               >
-                <path
-                  d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
-                />
-              </svg>
-            </button>
+                <z-icon zType="eye" class="w-4 h-4" />
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>
     </table>
+
+    <!-- Pagination -->
+    <div
+      class="flex items-center justify-between p-4 border-t border-gray-100 bg-gray-50/50"
+      *ngIf="totalPages > 1"
+    >
+      <button
+        z-button
+        zType="outline"
+        (click)="changePage(currentPage - 1)"
+        [disabled]="currentPage === 1"
+      >
+        Anterior
+      </button>
+      <span class="text-sm font-medium text-gray-600">
+        Página <span class="text-gray-900">{{ currentPage }}</span> de
+        <span class="text-gray-900">{{ totalPages }}</span>
+      </span>
+      <button
+        z-button
+        zType="outline"
+        (click)="changePage(currentPage + 1)"
+        [disabled]="currentPage === totalPages"
+      >
+        Próxima
+      </button>
+    </div>
   </div>
 
   <app-modal

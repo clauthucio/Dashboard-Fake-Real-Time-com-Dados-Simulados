@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ZardButtonComponent } from '@shared/components/ui/button/button.component';
 import { ZardCardComponent } from '@shared/components/ui/card/card.component';
+import { ZardInputDirective } from '@shared/components/ui/input/input.directive';
 import { generateId } from '@shared/utils/merge-classes';
 import { FormsModule } from '@angular/forms';
 import { LoginResponse } from '@core/types';
@@ -11,7 +12,7 @@ import { Api } from '@core/services/api.service';
 
 @Component({
   selector: 'app-login',
-  imports: [ZardButtonComponent, ZardCardComponent, FormsModule],
+  imports: [ZardButtonComponent, ZardCardComponent, FormsModule, ZardInputDirective],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })

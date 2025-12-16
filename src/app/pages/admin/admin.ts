@@ -16,10 +16,10 @@ export class Admin {
       path: '/admin',
     },
     { label: 'Usuários', icon: 'users', path: '/admin/users' },
-    { label: 'Máquinas', icon: 'factory', path: '/admin/machines' },
+    { label: 'Máquinas', icon: 'monitor', path: '/admin/machines' },
     {
       label: 'Setores',
-      icon: 'factory',
+      icon: 'layers',
       path: '/admin/sectors',
     },
     {

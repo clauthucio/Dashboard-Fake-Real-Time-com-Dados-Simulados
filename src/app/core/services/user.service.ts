@@ -15,7 +15,7 @@ export class UserService {
   }
 
   getUserById(id: number | string): Observable<User> {
-    return this.api.getUsers() as any;
+    return this.api.getUserById(id);
   }
 
   createUser(user: Omit<User, 'id'>): Observable<User> {
