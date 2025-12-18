@@ -1,12 +1,13 @@
-import { Routes } from '@angular/router';
-import { AuthGuard } from '@core/guards/auth.guard';
-import { RedirectGuard } from '@core/guards/redirect.guard';
-import { RoleGuard } from '@core/guards/role.guard';
-import { AcessoNegado } from '@pages/acesso-negado/acesso-negado';
-import { Admin } from '@pages/admin/admin';
-import { Login } from '@pages/login/login';
-import { Operador } from '@pages/operador/operador';
-import { Supervisor } from '@pages/supervisor/supervisor';
+import { Routes } from "@angular/router";
+import { AuthGuard } from "@core/guards/auth.guard";
+import { RedirectGuard } from "@core/guards/redirect.guard";
+import { RoleGuard } from "@core/guards/role.guard";
+import { AcessoNegado } from "@pages/acesso-negado/acesso-negado";
+import { Admin } from "@pages/admin/admin";
+import { Login } from "@pages/login/login";
+import { Operador } from "@pages/operador/operador";
+import { Supervisor } from "@pages/supervisor/supervisor";
+
 
 export const routes: Routes = [
   // LOGIN
@@ -22,26 +23,6 @@ export const routes: Routes = [
     canActivate: [AuthGuard, RoleGuard],
     data: { roles: ['admin'] },
     component: Admin,
-    children: [
-      {
-        path: 'users',
-        loadComponent: () =>
-          import('./pages/admin/components/users/users.component').then((m) => m.UsersComponent),
-      },
-      {
-        path: 'sectors',
-        loadComponent: () =>
-          import('./pages/admin/components/sectors/sectors.component').then(
-            (m) => m.SectorsComponent
-          ),
-      },
-      {
-        path: 'config',
-        loadComponent: () =>
-          import('./pages/admin/components/config/config.component').then((m) => m.ConfigComponent),
-      },
-      { path: '', redirectTo: 'users', pathMatch: 'full' },
-    ],
   },
 
   // SUPERVISOR
