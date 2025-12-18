@@ -1,0 +1,68 @@
+<!-- <h2>Login</h2>
+  <span>
+    <button (click)="loginAs('admin')">Entrar como Admin</button>
+
+  </span>
+    <button (click)="loginAs('supervisor')">Entrar como Supervisor</button>
+    <button (click)="loginAs('operador')">Entrar como Operador</button>
+ -->
+<section class="w-full h-screen flex">
+  <div class="hidden w-1/2 md:block h-screen bg bg-red-400">
+    <img src="/login.jpeg" alt="" class="w-full h-full" />
+  </div>
+  <div class="w-full md:w-1/2 h-screen bg flex items-center justify-center">
+    <z-card class="w-full max-w-sm" zTitle="Notry Vision" zDescription="Entre com suas credenciais">
+      <div class="space-y-4">
+        <div class="space-y-2">
+          <label
+            [for]="idEmail"
+            class="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          >
+            Usuario
+          </label>
+          <input
+            z-input
+            [id]="idEmail"
+            type="email"
+            [(ngModel)]="user"
+            placeholder="Insira seu Usuario"
+            required
+          />
+        </div>
+        <div class="space-y-2">
+          <div class="flex items-center">
+            <label
+              [for]="idPassword"
+              class="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              Password
+            </label>
+          </div>
+          <input
+            z-input
+            placeholder="Insira sua Senha"
+            [id]="idPassword"
+            [(ngModel)]="password"
+            type="password"
+            required
+          />
+        </div>
+        <div class="space-y-2">
+          <!-- <z-button zType="default" class="w-full"(click)="loginAs('supervisor')">Login</z-button> -->
+          <z-button zType="default" class="w-full" (click)="loginAuth()" [zLoading]="isclicked()"
+            >Login</z-button
+          >
+          <p
+            class="ml-auto text-sm underline-offset-4 text-center w-full text-destructive font-medium"
+            [class.hidden]="!showError()"
+          >
+            Credenciais Invalidas
+          </p>
+
+          <!-- <p [class]="{'ml-auto text-sm underline-offset-4 text-center w-full text-red-500 font-medium':showError(),'hidden':!showError()}"> Credenciais Invalidas </p> -->
+          <!-- <z-button zType="outline" class="w-full">Login with Google</z-button> -->
+        </div>
+      </div>
+    </z-card>
+  </div>
+</section>

@@ -1,0 +1,116 @@
+<z-layout class="h-screen overflow-hidden rounded-md border">
+  <z-header>
+    <div class="flex w-full items-center justify-between">
+      <div class="flex items-center text-lg font-semibold">
+        <!-- <img src="images/zard.svg" alt="Logo" width="24" height="24" /> -->
+        <span class="ml-2">Notry Vision</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <div class="relative">
+          <z-button zType="ghost" zSize="sm" (click)="toggleNotifications()" class="relative">
+            <z-icon zType="bell" />
+            @if (alertCount > 0) {
+            <span
+              class="absolute top-2 right-2 h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-white animate-pulse"
+            ></span>
+            }
+          </z-button>
+
+          @if (showNotifications()) {
+          <div
+            class="absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50"
+          >
+            <div class="px-4 py-2 border-b border-gray-50 flex justify-between items-center">
+              <h3 class="font-semibold text-sm text-gray-900">Notificações</h3>
+              <span
+                class="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-medium"
+                *ngIf="alertCount > 0"
+              >
+                {{ alertCount }} alerta(s)
+              </span>
+            </div>
+
+            <div class="max-h-[300px] overflow-y-auto">
+              @for (machine of alerts(); track machine.id) {
+              <div
+                class="px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-50 last:border-0 cursor-pointer"
+              >
+                <div class="flex items-start gap-3">
+                  <div
+                    class="mt-1 h-2 w-2 rounded-full flex-shrink-0"
+                    [ngClass]="{
+                      'bg-yellow-400': machine.alerta.nivel === 'amarelo',
+                      'bg-red-500': machine.alerta.nivel === 'vermelho'
+                    }"
+                  ></div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-900">{{ machine.nome }}</p>
+                    <p class="text-xs text-gray-500 mt-0.5">{{ machine.alerta.mensagem }}</p>
+                    <span class="text-[10px] text-gray-400 mt-1 block">
+                      Setor: {{ machine.setor }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              } @empty {
+              <div class="px-4 py-8 text-center text-gray-500">
+                <p class="text-sm">Nenhuma notificação</p>
+              </div>
+              }
+            </div>
+          </div>
+          }
+
+          <!-- Click outside overlay -->
+          @if (showNotifications()) {
+          <div class="fixed inset-0 z-40" (click)="toggleNotifications()"></div>
+          }
+        </div>
+        <app-button-logout />
+      </div>
+    </div>
+  </z-header>
+
+  <z-layout class="h-full">
+    <z-sidebar [zWidth]="250" class="p-0!">
+      <nav class="flex h-full flex-col gap-2 p-4">
+        <z-sidebar-group class="gap-3">
+          <z-sidebar-group-label>Menu</z-sidebar-group-label>
+          @for (item of menu; track $index) {
+          <button z-button zType="ghost" class="justify-start text-lg" [routerLink]="item.path">
+            <z-icon [zType]="item.icon" class="mr-2" zSize="xl" />
+            {{ item.label }}
+          </button>
+
+          }
+
+          <!-- <button z-button zType="ghost" class="justify-start">
+                <z-icon zType="layers" class="mr-2" />
+                Projects
+              </button>
+              <button z-button zType="ghost" class="justify-start">
+                <z-icon zType="users" class="mr-2" />
+                Team
+              </button> -->
+        </z-sidebar-group>
+      </nav>
+    </z-sidebar>
+
+    <z-layout>
+      <z-content class="min-h-50">
+        <div class="space-y-4">
+          <router-outlet />
+          <!-- <z-skeleton class="h-32 w-full" />
+              <z-skeleton class="h-48 w-full" />
+              <z-skeleton class="h-24 w-full" /> -->
+        </div>
+      </z-content>
+
+      <z-footer>
+        <div class="text-muted-foreground flex w-full items-center justify-center text-sm">
+          © {{ year }} Notry Vision. Todos os direitos reservados.
+        </div>
+      </z-footer>
+    </z-layout>
+  </z-layout>
+</z-layout>

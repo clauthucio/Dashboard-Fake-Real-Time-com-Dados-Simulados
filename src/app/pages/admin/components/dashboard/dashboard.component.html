@@ -1,0 +1,40 @@
+@if (dashboardData$ | async; as data) {
+<app-dashboard-cards [data]="data" />
+
+<!-- Charts Grid Row -->
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-6">
+  <!-- Main Production Chart (Left - Wider but reduced to 3/5) -->
+  <div class="lg:col-span-3">
+    <app-production-chart [machines]="data.machines" class="block h-full" />
+  </div>
+
+  <!-- Side Bar Charts (Right - Broader 2/5) -->
+  <div class="lg:col-span-2">
+    <app-machine-bar-charts [machines]="data.machines" class="block h-full" />
+  </div>
+</div>
+
+<app-machine-realtime-metrics [machines]="data.machines" class="block mb-6" />
+
+<app-machine-recent-history [machines]="data.machines" />
+} @else {
+<!-- Skeleton Loading State -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+  <z-skeleton class="h-32 rounded-3xl" />
+  <z-skeleton class="h-32 rounded-3xl" />
+  <z-skeleton class="h-32 rounded-3xl" />
+  <z-skeleton class="h-32 rounded-3xl" />
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-6">
+  <div class="lg:col-span-3">
+    <z-skeleton class="h-96 rounded-xl" />
+  </div>
+  <div class="lg:col-span-2">
+    <z-skeleton class="h-96 rounded-xl" />
+  </div>
+</div>
+
+<z-skeleton class="h-64 rounded-xl mb-6" />
+<z-skeleton class="h-80 rounded-xl" />
+}

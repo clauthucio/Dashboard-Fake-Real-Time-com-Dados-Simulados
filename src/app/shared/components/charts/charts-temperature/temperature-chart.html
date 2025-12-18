@@ -1,0 +1,52 @@
+<z-card
+ [zTitle]="'Setor'"
+  class="flex items-center justify-center flex-col "
+ >
+ <div class="flex flex-col items-center gap-2">
+  <svg viewBox="0 0 200 120" class="w-48">
+    <!-- Arco base -->
+    <path
+      d="M20,100 A80,80 0 0,1 180,100"
+      fill="none"
+      stroke="#e5e7eb"
+      stroke-width="14"
+      stroke-linecap="round"
+    />
+
+    <!-- Arco ativo -->
+    <path
+      d="M20,100 A80,80 0 0,1 180,100"
+      fill="none"
+      [attr.stroke]="color()"
+      stroke-width="14"
+      stroke-linecap="round"
+      [attr.stroke-dasharray]="percentage() * 2.51 + ', 251'"
+      class="transition-all duration-500 ease-out"
+    />
+
+    <!-- Ponteiro -->
+    <g
+      [attr.transform]="'rotate(' + angle() + ' 100 100)'"
+      class="transition-transform duration-500 ease-out"
+    >
+      <line
+        x1="100"
+        y1="100"
+        x2="100"
+        y2="30"
+        stroke="#111827"
+        stroke-width="3"
+      />
+      <circle cx="100" cy="100" r="5" fill="#111827" />
+    </g>
+  </svg>
+
+  <!-- Texto -->
+  <div class="text-center">
+    <p class="text-3xl font-bold" [style.color]="color()">
+      {{ value }}{{ unit }}
+    </p>
+    <p class="text-sm text-gray-500">{{ label }}</p>
+  </div>
+</div>
+  </z-card>

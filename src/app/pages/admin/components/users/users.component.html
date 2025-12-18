@@ -1,0 +1,188 @@
+<div class="space-y-6">
+  <div class="flex justify-between items-center">
+    <h2 class="text-2xl font-bold text-gray-800">Gerenciar Usuários</h2>
+    <button z-button (click)="startAdd()">
+      <z-icon zType="plus" class="w-4 h-4 mr-2" />
+      Novo Usuário
+    </button>
+  </div>
+
+  <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+    <table class="w-full text-left">
+      <thead
+        class="bg-gray-50 border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase tracking-wider"
+      >
+        <tr>
+          <!-- API returns string IDs now -->
+          <th class="p-6">ID</th>
+          <th class="p-6">Usuário</th>
+          <th class="p-6">Setor</th>
+          <th class="p-6">Cargo</th>
+          <th class="p-6 text-center">Ações</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-50">
+        <tr *ngIf="isLoading">
+          <td colspan="5" class="p-6">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4" *ngFor="let _ of [1, 2, 3, 4, 5]">
+                <z-skeleton class="w-8 h-8 rounded-full" />
+                <div class="flex-1 space-y-2">
+                  <z-skeleton class="h-4 w-1/3" />
+                  <z-skeleton class="h-3 w-1/4" />
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr
+          *ngFor="let user of pagedUsers; let i = index"
+          class="hover:bg-gray-50 transition-colors"
+          [class.hidden]="isLoading"
+        >
+          <td class="p-6 text-gray-500 font-mono text-xs leading-6" title="{{ user.id }}">
+            {{ (currentPage - 1) * itemsPerPage + i + 1 }}
+          </td>
+          <td class="p-6 font-medium text-gray-900 leading-6">
+            <div class="flex items-center gap-3">
+              <img
+                [src]="user.image || 'https://ui-avatars.com/api/?name=' + user.name"
+                alt=""
+                class="w-8 h-8 rounded-full bg-gray-100 object-cover"
+              />
+              <div>
+                <div class="font-bold">{{ user.name }}</div>
+                <div class="text-xs text-gray-400">@{{ user.username }}</div>
+              </div>
+            </div>
+          </td>
+          <td class="p-6 text-gray-500 leading-6">{{ user.sector }}</td>
+          <td class="p-6">
+            <span
+              [ngClass]="{
+                'bg-purple-100 text-purple-700': user.cargo === 'admin',
+                'bg-blue-100 text-blue-700': user.cargo === 'supervisor',
+                'bg-green-100 text-green-700': user.cargo === 'operador'
+              }"
+              class="px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide"
+            >
+              {{ user.cargo }}
+            </span>
+          </td>
+          <td class="p-6 text-center">
+            <div class="flex justify-center gap-2">
+              <!-- Edit/Delete buttons -->
+              <button z-button zType="outline" (click)="startEdit(user)" title="Editar">
+                <z-icon zType="pencil" class="w-4 h-4" />
+              </button>
+              <button
+                z-button
+                zType="outline"
+                class="text-red-500 hover:text-red-700 hover:bg-red-50 hover:border-red-100"
+                (click)="delete(user.id)"
+                title="Excluir"
+              >
+                <z-icon zType="trash-2" class="w-4 h-4" />
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div
+      class="flex items-center justify-between p-4 border-t border-gray-100 bg-gray-50/50"
+      *ngIf="totalPages > 1"
+    >
+      <button
+        z-button
+        zType="outline"
+        (click)="changePage(currentPage - 1)"
+        [disabled]="currentPage === 1"
+      >
+        Anterior
+      </button>
+      <span class="text-sm font-medium text-gray-600">
+        Página <span class="text-gray-900">{{ currentPage }}</span> de
+        <span class="text-gray-900">{{ totalPages }}</span>
+      </span>
+      <button
+        z-button
+        zType="outline"
+        (click)="changePage(currentPage + 1)"
+        [disabled]="currentPage === totalPages"
+      >
+        Próxima
+      </button>
+    </div>
+  </div>
+
+  <app-modal
+    [isOpen]="showForm"
+    [title]="isEditing ? 'Editar Usuário' : 'Novo Usuário'"
+    (closeEvent)="cancel()"
+  >
+    <div class="grid gap-6">
+      <!-- Name -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
+        <input z-input [(ngModel)]="userForm.name" placeholder="Ex: João Silva" />
+      </div>
+
+      <!-- Username -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Nome de Usuário (Login)</label>
+        <input z-input [(ngModel)]="userForm.username" placeholder="Ex: joaosilva" />
+      </div>
+
+      <!-- Image URL -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">URL da Foto (Avatar)</label>
+        <input z-input [(ngModel)]="userForm.image" placeholder="https://..." />
+      </div>
+
+      <!-- Password (Only shown if creating or optional) -->
+      <!-- Spec says Password is required for creation. -->
+      <div *ngIf="!isEditing || true">
+        <!-- Always showing for now as simple implem, or maybe just if !isEditing? Spec doesn't say update password. Let's show it. -->
+        <label class="block text-sm font-medium text-gray-700 mb-1">Senha</label>
+        <input z-input [(ngModel)]="userForm.password" type="password" placeholder="********" />
+      </div>
+
+      <!-- Cargo -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Função / Cargo</label>
+        <select
+          [(ngModel)]="userForm.cargo"
+          class="w-full bg-gray-50 text-gray-900 border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-blue-100 focus:border-blue-400 outline-none transition-all"
+        >
+          <option value="admin">Administrador</option>
+          <option value="supervisor">Supervisor</option>
+          <option value="operador">Operador</option>
+        </select>
+      </div>
+
+      <!-- Sector -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Setor</label>
+        <select
+          [(ngModel)]="userForm.sector"
+          class="w-full bg-gray-50 text-gray-900 border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-blue-100 focus:border-blue-400 outline-none transition-all"
+        >
+          <option value="" disabled>Selecione um setor</option>
+          <option *ngFor="let sector of sectors$ | async" [value]="sector.name">
+            {{ sector.name }}
+          </option>
+        </select>
+      </div>
+
+      <div class="flex justify-end pt-4 space-x-3">
+        <button z-button zType="ghost" (click)="cancel()">Cancelar</button>
+        <button z-button (click)="save()">Salvar</button>
+      </div>
+    </div>
+  </app-modal>
+
+  <app-toast [message]="toastMessage" [type]="toastType" [trigger]="toastTrigger"></app-toast>
+</div>
