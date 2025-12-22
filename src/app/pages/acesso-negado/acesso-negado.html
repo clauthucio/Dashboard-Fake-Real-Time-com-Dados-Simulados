@@ -1,1 +1,64 @@
-<p>acesso-negado works!</p>
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="bg-white shadow-xl rounded-2xl p-10 max-w-md w-full text-center">
+
+    <!-- Ícone -->
+    <div class="flex justify-center mb-6">
+      <div class="bg-red-100 text-red-600 rounded-full p-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 11c0-1.657-1.343-3-3-3m6 3c0-1.657 1.343-3 3-3M12 15h.01M12 3C7.589 3 4 6.589 4 11c0 4.418 3.589 8 8 8s8-3.582 8-8c0-4.411-3.589-8-8-8z"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Título -->
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">
+      Acesso Negado
+    </h1>
+
+    <!-- Usuário -->
+    <div class="bg-gray-50 rounded-lg p-4 mb-6 text-left">
+      <p class="text-sm text-gray-600">
+       Nome do usuário:
+      <span class="font-semibold text-red-600">
+        {{ usuario }}
+      </span>
+      </p>
+      <p class="text-sm text-gray-600">
+        Cargo:
+        <span class="font-semibold text-red-600">
+          {{ cargo }}
+        </span>
+      </p>
+      <p class="text-sm text-gray-600">
+        Perfil atual:
+        <span class="font-semibold text-red-600">
+          {{ username }}
+        </span>
+      </p>
+   
+    </div>
+
+    <!-- Mensagem -->
+    <p class="text-gray-600 mb-6">
+      Seu perfil atual não possui permissão para acessar esta página. <br><br> Por favor, entre em contato com o administrador do sistema para obter acesso adequado.
+    </p>
+
+    <!-- Ações -->
+    <div class="flex flex-col gap-3">
+      <a
+        routerLink="/"
+        class="bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
+        Voltar para o início
+      </a>
+
+      <a
+        routerLink="/login"
+        class="border border-gray-300 text-gray-700 hover:bg-gray-100 py-2 rounded-lg transition">
+        Trocar de usuário
+      </a>
+    </div>
+
+  </div>
+</div>
